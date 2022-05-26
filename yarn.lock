@@ -2,15 +2,15 @@
 # yarn lockfile v1
 
 
-"@codecb/node-loader@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.npmjs.org/@codecb/node-loader/-/node-loader-0.0.1.tgz#25be4af915f7dff85c256f54bdb63e015ee4fa30"
-  integrity sha512-KOSgMOF+q3HRLV1YI7Si/HiDP+uvFb7PGjDQpJgZRUITAKu6Z08jYb/duAY7SErkYUxtwh9CQeQRkBIrLF2Qkg==
+"@codecb/node-loader@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.npmjs.org/@codecb/node-loader/-/node-loader-0.0.5.tgz#030d5e1d6024b4212e5d530b32b1f987c5ac63ac"
+  integrity sha512-3m9v9yAZCQ5iPYhcZsZjsBIjkS8C+r29ZDlY8LJ/Vwbeco6s7P5xwaVdGbcevUmM6nL9iCXrVMsFA1tCSSiNRQ==
 
-"@codecb/tsconfigs@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.npmjs.org/@codecb/tsconfigs/-/tsconfigs-0.0.2.tgz#aad62960cb4cce29a5d9d6c74dac940dea80bd06"
-  integrity sha512-DxMA2ybwPKeSuSFehij2Owpuo/UCvgZLUdYHHEMZZCT8baN3snFnUylsnj8DCc7Z0FoxZUJi8+IIJivMi6b8BA==
+"@codecb/tsconfigs@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.npmjs.org/@codecb/tsconfigs/-/tsconfigs-0.0.3.tgz#b688733b760c43b6715d85797414d2d71f8622df"
+  integrity sha512-jcy4YmxFIXwiu5wATWqgwZEzVrGYembBhFmbYvHVZzCGxPNdAOPa9U1R8oP3sccEJ8b/kDzOx0QRnUlQLQ2JoA==
 
 "@mdn/browser-compat-data@^4.1.16":
   version "4.2.1"
@@ -296,10 +296,10 @@ tslib@^2.3.1:
   resolved "https://registry.npmjs.org/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
 
-typescript@^4.6.4:
-  version "4.6.4"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-4.6.4.tgz#caa78bbc3a59e6a5c510d35703f6a09877ce45e9"
-  integrity sha512-9ia/jWHIEbo49HfjrLGfKbZSuWo9iTMwXO+Ca3pRsSpbsMbc7/IU8NKdCZVRRBafVPGnoJeFL76ZOAA84I9fEg==
+typescript@^4.7.2:
+  version "4.7.2"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-4.7.2.tgz#1f9aa2ceb9af87cca227813b4310fff0b51593c4"
+  integrity sha512-Mamb1iX2FDUpcTRzltPxgWMKy3fhg0TN378ylbktPGPK/99KbDtMQ4W1hwgsbPAsG3a0xKa1vmw4VKZQbkvz5A==
 
 ua-parser-js@^1.0.2:
   version "1.0.2"
