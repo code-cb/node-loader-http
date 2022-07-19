@@ -13,8 +13,8 @@ const getFormat = (url: string) => {
   return 'module';
 };
 
-export const load: LoadHook = async (url, context, defaultLoad) => {
-  if (!isHttpUrl(url)) return defaultLoad(url, context, defaultLoad);
+export const load: LoadHook = async (url, context, nextLoad) => {
+  if (!isHttpUrl(url)) return nextLoad(url, context, nextLoad);
   const response = await fetch(url);
   if (!response.ok)
     throw Error(
@@ -22,6 +22,7 @@ export const load: LoadHook = async (url, context, defaultLoad) => {
     );
   return {
     format: getFormat(url),
+    shortCircuit: true,
     // Setting source as ArrayBuffer seems safer than string because string source it's not available for `wasm` format
     source: await response.arrayBuffer(),
   };
@@ -30,14 +31,12 @@ export const load: LoadHook = async (url, context, defaultLoad) => {
 export const resolve: ResolveHook = (
   specifier,
   { parentURL, ...context },
-  defaultResolve,
+  nextResolve,
 ) => {
-  if (isHttpUrl(specifier)) return { url: specifier };
+  if (isHttpUrl(specifier)) return { shortCircuit: true, url: specifier };
   if (!parentURL || !isHttpUrl(parentURL))
-    return defaultResolve(specifier, { ...context, parentURL }, defaultResolve);
+    return nextResolve(specifier, { ...context, parentURL }, nextResolve);
   if (specifier.startsWith('./') || specifier.startsWith('../'))
-    return {
-      url: new URL(specifier, parentURL).href,
-    };
-  return defaultResolve(specifier, { ...context }, defaultResolve);
+    return { shortCircuit: true, url: new URL(specifier, parentURL).href };
+  return nextResolve(specifier, { ...context }, nextResolve);
 };
