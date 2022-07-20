@@ -1,8 +1,9 @@
 import type { LoadHook, ResolveHook } from '@codecb/node-loader';
 import fetch from 'node-fetch';
 
-const isHttpUrl = (s: string) =>
-  s.startsWith('http://') || s.startsWith('https://');
+const isHttpUrl = (s: string | undefined): s is string =>
+  !!s && /^https?:\/\//.test(s);
+const isRelativePath = (s: string) => s && /^\.?\.\//.test(s);
 
 // As of v18.2.0 Node only supports custom source with `json`, `module` or `wasm` format
 // See: https://nodejs.org/api/esm.html#loadurl-context-defaultload
@@ -14,7 +15,7 @@ const getFormat = (url: string) => {
 };
 
 export const load: LoadHook = async (url, context, nextLoad) => {
-  if (!isHttpUrl(url)) return nextLoad(url, context, nextLoad);
+  if (!isHttpUrl(url)) return nextLoad(url, context);
   const response = await fetch(url);
   if (!response.ok)
     throw Error(
@@ -28,15 +29,12 @@ export const load: LoadHook = async (url, context, nextLoad) => {
   };
 };
 
-export const resolve: ResolveHook = (
-  specifier,
-  { parentURL, ...context },
-  nextResolve,
-) => {
+export const resolve: ResolveHook = (specifier, context, nextResolve) => {
   if (isHttpUrl(specifier)) return { shortCircuit: true, url: specifier };
-  if (!parentURL || !isHttpUrl(parentURL))
-    return nextResolve(specifier, { ...context, parentURL }, nextResolve);
-  if (specifier.startsWith('./') || specifier.startsWith('../'))
-    return { shortCircuit: true, url: new URL(specifier, parentURL).href };
-  return nextResolve(specifier, { ...context }, nextResolve);
+  if (isHttpUrl(context.parentURL) && isRelativePath(specifier))
+    return {
+      shortCircuit: true,
+      url: new URL(specifier, context.parentURL).href,
+    };
+  return nextResolve(specifier, context);
 };
