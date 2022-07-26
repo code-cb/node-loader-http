@@ -24,17 +24,23 @@ export const load: LoadHook = async (url, context, nextLoad) => {
   return {
     format: getFormat(url),
     shortCircuit: true,
-    // Setting source as ArrayBuffer seems safer than string because string source it's not available for `wasm` format
+    // Setting source as ArrayBuffer seems safer than string because string source is not available for `wasm` format
     source: await response.arrayBuffer(),
   };
 };
 
-export const resolve: ResolveHook = (specifier, context, nextResolve) => {
+export const resolve: ResolveHook = (
+  specifier,
+  { parentURL, ...context },
+  nextResolve,
+) => {
   if (isHttpUrl(specifier)) return { shortCircuit: true, url: specifier };
-  if (isHttpUrl(context.parentURL) && isRelativePath(specifier))
-    return {
-      shortCircuit: true,
-      url: new URL(specifier, context.parentURL).href,
-    };
+  // Include parentURL in context when it's not a HTTP URL so that Node can resolve relative paths
+  if (!isHttpUrl(parentURL))
+    return nextResolve(specifier, { ...context, parentURL });
+  if (isRelativePath(specifier))
+    return { shortCircuit: true, url: new URL(specifier, parentURL).href };
+  // If specifier is a bare module name, make sure to not include parentURL in the context to force Node to resolve it as a Node module
+  // If specifier is an absolute path, it doesn't matter if parentURL is included in the context
   return nextResolve(specifier, context);
 };
