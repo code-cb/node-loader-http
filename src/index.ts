@@ -1,6 +1,10 @@
 import type { LoadHook, ResolveHook } from '@codecb/node-loader';
 import fetch from 'node-fetch';
+import { execArgv } from 'node:process';
 
+const useBuiltinNetworkImport = execArgv.includes(
+  '--experimental-network-imports',
+);
 const isHttpUrl = (s: string | undefined): s is string =>
   !!s && /^https?:\/\//.test(s);
 const isRelativePath = (s: string) => s && /^\.?\.\//.test(s);
@@ -15,7 +19,7 @@ const getFormat = (url: string) => {
 };
 
 export const load: LoadHook = async (url, context, nextLoad) => {
-  if (!isHttpUrl(url)) return nextLoad(url, context);
+  if (useBuiltinNetworkImport || !isHttpUrl(url)) return nextLoad(url, context);
   const response = await fetch(url);
   if (!response.ok)
     throw Error(
