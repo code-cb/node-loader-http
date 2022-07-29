@@ -1,5 +1,4 @@
 import type { LoadHook, ResolveHook } from '@codecb/node-loader';
-import fetch from 'node-fetch';
 import { execArgv } from 'node:process';
 
 const useBuiltinNetworkImport = execArgv.includes(
@@ -20,6 +19,7 @@ const getFormat = (url: string) => {
 
 export const load: LoadHook = async (url, context, nextLoad) => {
   if (useBuiltinNetworkImport || !isHttpUrl(url)) return nextLoad(url, context);
+  const fetch = await import('node-fetch').then(m => m.default);
   const response = await fetch(url);
   if (!response.ok)
     throw Error(

@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@codecb/node-loader@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.npmjs.org/@codecb/node-loader/-/node-loader-0.0.7.tgz#c1016e064f2eb54eb3922add6d9df120b7968327"
-  integrity sha512-jH/JoMGjD0f6Xxvc2uZkv6Ur0o52uTu+N3vb26uibbXutIar16fc/NOHmChJnrRemn8l+gFYrYURMpA7a7hAFQ==
+"@codecb/node-loader@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.npmjs.org/@codecb/node-loader/-/node-loader-0.0.8.tgz#bc394cb6f21c8ff3df027b4b60cc183bfc152ae3"
+  integrity sha512-U5xHA0aJptm05c1zEF4exQQwR+Zg2VGZhwwHSWCo0DPaEy5Ea7aF6/W2gGkJ2PrSNTFcuAhixZY/E6a7snhcJg==
 
 "@codecb/prettierrc@0.0.1":
   version "0.0.1"
@@ -28,9 +28,9 @@ data-uri-to-buffer@^4.0.0:
   integrity sha512-Vr3mLBA8qWmcuschSLAOogKgQ/Jwxulv3RNE4FXnYWRGujzrRWQI4m12fQqRkwX06C0KanhLr4hK+GydchZsaA==
 
 fetch-blob@^3.1.2, fetch-blob@^3.1.4:
-  version "3.1.5"
-  resolved "https://registry.npmjs.org/fetch-blob/-/fetch-blob-3.1.5.tgz#0077bf5f3fcdbd9d75a0b5362f77dbb743489863"
-  integrity sha512-N64ZpKqoLejlrwkIAnb9iLSA3Vx/kjgzpcDhygcqJ2KKjky8nCgUQ+dzXtbrLaWZGZNmNfQTsiQ0weZ1svglHg==
+  version "3.2.0"
+  resolved "https://registry.npmjs.org/fetch-blob/-/fetch-blob-3.2.0.tgz#f09b8d4bbd45adc6f0c20b7e787e793e309dcce9"
+  integrity sha512-7yAQpD2UMJzLi1Dqv7qFYnPbaPx7ZfFK6PiIxQ4PfkGPyNyl2Ugx+a/umUonmKqjhM4DnfbMvdX6otXq83soQQ==
   dependencies:
     node-domexception "^1.0.0"
     web-streams-polyfill "^3.0.3"
@@ -47,7 +47,7 @@ node-domexception@^1.0.0:
   resolved "https://registry.npmjs.org/node-domexception/-/node-domexception-1.0.0.tgz#6888db46a1f71c0b76b3f7555016b63fe64766e5"
   integrity sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==
 
-node-fetch@^3.2.9:
+node-fetch@3.2.9:
   version "3.2.9"
   resolved "https://registry.npmjs.org/node-fetch/-/node-fetch-3.2.9.tgz#3f6070bf854de20f21b9fe8479f823462e615d7d"
   integrity sha512-/2lI+DBecVvVm9tDhjziTVjo2wmTsSxSk58saUYP0P/fRJ3xxtfMDY24+CKTkfm0Dlhyn3CSXNL0SoRiCZ8Rzg==
